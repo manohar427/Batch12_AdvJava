@@ -1,0 +1,147 @@
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<script>
+function selectAll(){
+	var skills = document.stdRegistation.skills;
+	
+	var allSelect = skills[2].checked;
+	
+	if(allSelect){
+		for(var i=0;i<skills.length;i++){
+			skills[i].checked = true;
+		}
+	}else{
+		for(var i=0;i<skills.length;i++){
+			skills[i].checked = false;
+		}
+	}
+	
+}
+
+function validateForm(){
+	var fname = document.stdRegistation.fname.value;
+	var email = document.stdRegistation.email.value;
+	var phone = document.stdRegistation.phone.value;
+	var country = document.stdRegistation.country.value;
+	var address = document.stdRegistation.address.value;
+	var gender = document.stdRegistation.gender.value;
+	var skills = document.stdRegistation.skills;
+	
+	
+	
+	if(fname.length == 0){
+		alert("Please provide Name");
+		document.stdRegistation.fname.style.background = "red";
+		document.stdRegistation.fname.focus();
+		return;
+	}
+	document.stdRegistation.fname.style.background = "yellow";
+	
+	if(email.length == 0){
+		alert("Please provide Email");
+		document.stdRegistation.email.style.background = "red";
+		document.stdRegistation.email.focus();
+		return;
+	}
+	document.stdRegistation.email.style.background = "yellow";
+	if(phone.length <10){
+		alert("Please provide Phone no");
+		document.stdRegistation.phone.focus();
+		return;
+	}
+	
+	if(gender.length == 0){
+		alert("Please Select gender");
+		return;
+	}
+	
+	var temp =0;
+	for(var i=0;i<skills.length;i++){
+		if(skills[i].checked){
+			temp = 1;
+		}
+	}
+	
+	if(temp == 0){
+		alert("Please select atleast one skill.");
+		return;
+	}
+	if(country == "select"){
+		alert("Please Select Country");
+		document.stdRegistation.country.focus();
+		return;
+	}
+	
+	if(address.length == 0){
+		alert("Please provide Address");
+		document.stdRegistation.address.style.background = "red";
+		document.stdRegistation.address.focus();
+		return;
+	}
+	document.stdRegistation.address.style.background = "yellow";
+	alert("Form Submitted successfully..");
+}
+
+</script>
+
+<body bgcolor="yellow">
+    
+    <form name="stdRegistation">
+     <img src='Two.jpg' width='200px' height='100px'></img>
+
+	<table width="700px" border="1" bgcolor=#23bc23>
+
+		<tr>
+			<td>Name</td>
+			<td><input type="text" name='fname'></input></td>
+		</tr>
+
+		<tr>
+			<td>Email</td>
+			<td><input type="text" name='email'></input></td>
+		</tr>
+
+        <tr>
+			<td>Phone</td>
+			<td><input type="text" name='phone'></input></td>
+		</tr>
+         <tr>
+			<td>Gender</td>
+			<td>Male<input type="radio" name="gender" value='Male'></input>  FeMale <input type="radio" name="gender" value="Female"></input></td>
+		</tr>
+		
+		<tr>
+			<td>Skills</td>
+			<td>C<input type="checkbox" name="skills" value="c"></input>  Java <input type="checkbox" name="skills" value="java"></input>  All <input type="checkbox" name="skills" value="all" onclick="selectAll()"></input></td>
+		</tr>
+		
+		
+        <tr>
+			<td>Country</td>
+			<td>
+			    <select name='country'>
+			       <option value="select">Select</option>
+			        <option value="india">India</option>
+			        <option value="ca">CA</option>
+			         <option value="us">US</option>
+			    </select>
+			</td>
+		</tr>
+		
+		<tr>
+			<td>Address</td>
+			<td>
+			   <textarea name='address' rows='10' cols='50'></textarea>
+			</td>
+		</tr>
+		
+		 <tr>
+			<td colspan="2" align="center"><input type="button" Value="Submit" onclick="validateForm()"></input></td>
+		</tr>
+	</table>
+  </form>
+</body>
+</html>

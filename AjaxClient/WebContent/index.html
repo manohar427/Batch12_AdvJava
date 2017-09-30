@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+
+<script type="text/javascript">
+function selectedCountry(){
+	var country = document.getElementById("country").value;
+	
+	var xhttp = new XMLHttpRequest();
+	 
+	  xhttp.onreadystatechange = function() {
+	    if (xhttp.readyState == 4 && xhttp.status == 200) {
+	    	
+	      document.getElementById("stateDiv").innerHTML = xhttp.responseText;
+	    }
+	  };
+	  xhttp.open("GET", "http://localhost:1111/AjaxServer/TestServlet?country="+country, true);
+	  xhttp.send();
+}
+
+</script>
+<body>
+	<table>
+		<tr>
+			<td>Country</td>
+			<td><select onchange="selectedCountry()" id="country">
+					<option value="pls">Please Select</option>
+					<option value="india">India</option>
+					<option value="uk">UK</option>
+					<option value="us">US</option>
+			</select></td>
+		</tr>
+
+		<tr>
+			<td>Province/State</td>
+			<td>
+				<div id="stateDiv">
+					<select>
+						<option value="pls">Please Select</option>
+					</select>
+				</div>
+			</td>
+		</tr>
+
+	</table>
+
+</body>
+</html>
