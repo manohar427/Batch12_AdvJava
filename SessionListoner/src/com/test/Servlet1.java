@@ -1,4 +1,4 @@
-package com.login;
+package com.test;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -28,18 +28,9 @@ public class Servlet1 extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String userName = request.getParameter("username");
-		
 		HttpSession session =  request.getSession();
 		
-		String sessionID = session.getId();
-		
-		System.out.println("Session ID:"+sessionID);
-		
-		session.setAttribute("un", userName);
-		
-		//session.setMaxInactiveInterval(1*60);
-		//session.setMaxInactiveInterval(-1);
+		System.out.println("Ndew session ID:"+session.getId());
 		
 		request.getRequestDispatcher("userinfo.jsp").forward(request, response);
 	}
